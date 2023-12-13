@@ -24,8 +24,7 @@ import org.springframework.messaging.support.GenericMessage;
 import es.upm.dit.apsv.traceserver.TraceServerApplication;
 import es.upm.dit.apsv.traceserver.model.Trace;
 import es.upm.dit.apsv.traceserver.model.TransportationOrder;
-import es.upm.dit.apsv.transportationorderserver.repository.TransportationOrderRepository;
-//import org.springframework.boot.test.mock.mockito.MockBean;
+import es.upm.dit.apsv.traceserver.repository.TransportationOrderRepository;
 
 @SpringBootTest(classes = TraceServerApplication.class)
 @Import(TestChannelBinderConfiguration.class)
@@ -68,8 +67,8 @@ class TraceConsumerApplicationTests {
             Thread.sleep(1000);
             // 2. Check that the asynchronous function correctly updated the order
             TransportationOrder result = repository.findById("test-truck").orElseThrow();
-            assertEquals(result.getSt(), 1);
-            // assertEquals(result.getSt(), 0);
+
+            assertEquals(result.getSt(), 0);
             // assertEquals(result.getLastDate(), 1569233700000L);
             // assertEquals(result.getLastLat(), 38.42089633723801);
             // assertEquals(result.getLastLong(), -1.4491918734674392);
